@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meu Primeiro Site</title>
+
+  <style>
+    /* ====== ESTILOS GERAIS ====== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ====== CABEÇALHO / MENU ====== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+      background: rgba(15, 23, 42, 0.85);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .nav {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #38bdf8;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      padding: 6px 10px;
+      border-radius: 999px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+
+    /* ====== CONTEÚDO PRINCIPAL ====== */
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    section {
+      padding: 32px 20px;
+      border-radius: 18px;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(52, 211, 153, 0.1), transparent 55%),
+                  #020617;
+      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      margin-bottom: 20px;
+    }
+
+    h1, h2 {
+      margin-bottom: 8px;
+      color: #e5e7eb;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+    }
+
+    h2 {
+      font-size: 1.3rem;
+    }
+
+    p {
+      font-size: 0.98rem;
+      color: #cbd5f5;
+      max-width: 60rem;
+    }
+
+    /* ====== SESSÃO HERO (INÍCIO) ====== */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.7fr);
+      gap: 26px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-weight: 700;
+      background: linear-gradient(to right, #38bdf8, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .hero-subtitle {
+      margin-bottom: 14px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 8px 0 16px;
+      font-size: 0.8rem;
+    }
+
+    .badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .btn {
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.15s ease, border 0.15s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, #38bdf8, #22c55e);
+      color: #020617;
+      font-weight: 600;
+      box-shadow: 0 16px 40px rgba(56, 189, 248, 0.45);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 50px rgba(56, 189, 248, 0.55);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: rgba(148, 163, 184, 0.7);
+      color: #e5e7eb;
+    }
+
+    .btn-outline:hover {
+      background: rgba(15, 23, 42, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .hero-card {
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.25), transparent 55%),
+                  #020617;
+      padding: 16px 16px 18px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.85);
+      font-size: 0.9rem;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .hero-card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
+    .hero-card-tag {
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .hero-card-list {
+      list-style: none;
+      margin-top: 8px;
+    }
+
+    .hero-card-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      color: #cbd5f5;
+    }
+
+    .hero-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+    }
+
+    /* ====== PROJETOS ====== */
+    .projects-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .project-card {
+      padding: 14px 14px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .project-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .project-title {
+      font-weight: 600;
+      font-size: 0.98rem;
+    }
+
+    .project-tag {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(96, 165, 250, 0.7);
+      color: #bfdbfe;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: #cbd5f5;
+    }
+
+    .project-meta {
+      font-size: 0.76rem;
+      color: #9ca3af;
+      margin-top: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .project-meta span {
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    /* ====== CONTATO ====== */
+    .contact-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .contact-info {
+      font-size: 0.95rem;
+    }
+
+    .contact-line {
+      margin-top: 8px;
+    }
+
+    .contact-line strong {
+      color: #e5e7eb;
+    }
+
+    form {
+      display: grid;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 2px;
+      color: #e5e7eb;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    input:focus, textarea:focus {
+      outline: 2px solid #38bdf8;
+      outline-offset: 1px;
+      border-color: transparent;
+    }
+
+    .form-row-inline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    /* ====== RODAPÉ ====== */
+    footer {
+      text-align: center;
+      padding: 18px 12px 24px;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+      background: #020617;
+      margin-top: 16px;
+    }
+
+    /* ====== RESPONSIVIDADE ====== */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 22px 16px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav">
+      <div class="nav-logo">MEU.PORTFÓLIO</div>
+      <nav class="nav-links">
+        <a href="#inicio">Início</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- INÍCIO -->
+    <section id="inicio">
+      <div class="hero">
+        <div>
+          <p class="hero-title">Olá, eu sou o(a) Seu Nome</p>
+          <h1 class="hero-subtitle">Desenvolvedor(a) iniciante criando meu primeiro site com HTML, CSS e JavaScript.</h1>
+          <p>Este é um exemplo de página única que você pode editar no Visual Studio Code. 
+             Basta mudar os textos para contar quem você é, o que faz e como as pessoas podem falar com você.</p>
+
+          <div class="hero-badges">
+            <span class="badge">HTML • CSS • JavaScript</span>
+            <span class="badge">VS Code</span>
+            <span class="badge">Primeiro projeto</span>
+          </div>
+
+          <div class="hero-buttons">
+            <a href="#projetos" class="btn btn-primary">
+              Ver meus projetos →
+            </a>
+            <a href="#contato" class="btn btn-outline">
+              Falar comigo
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div class="hero-card-header">
+            <div>
+              <div class="hero-card-title">Status de aprendizado</div>
+              <p style="font-size: 0.8rem; color:#9ca3af;">Atualize os itens abaixo com o que você já domina.</p>
+            </div>
+            <span class="hero-card-tag">Em evolução</span>
+          </div>
+
+          <ul class="hero-card-list">
+            <li><span class="hero-dot"></span> HTML básico (estrutura de página)</li>
+            <li><span class="hero-dot"></span> CSS (cores, layouts, responsividade)</li>
+            <li><span class="hero-dot"></span> JavaScript básico (cliques, mensagens)</li>
+            <li><span class="hero-dot"></span> Uso do VS Code e Live Server</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- PROJETOS -->
+    <section id="projetos">
+      <h2>Projetos em destaque</h2>
+      <p style="margin-bottom: 12px;">Edite os títulos e descrições abaixo para mostrar os projetos que você está desenvolvendo.</p>
+
+      <div class="projects-grid">
+        <article class="project-card">
+          <div class="project-title-row">
+            <h3 class="project-title">Landing page simples</h3>
+            <span class="project-tag">HTML & CSS</span>
+          </div>
+          <p class="project-desc">Página estática com foco em um único produto/serviço, com sessão de destaque, benefícios e botão de contato.</p>
+          <div class="project-meta">
+            <span>Layout responsivo</span>
+            <span>Botão de chamada para ação</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-title-row">
+            <h3 class="project-title">Portfólio pessoal</h3>
+            <span class="project-tag">HTML, CSS e JS</span>
+          </div>
+          <p class="project-desc">Site para apresentar quem sou, minhas habilidades e formas de contato.</p>
+          <div class="project-meta">
+            <span>Seções de sobre, projetos, contato</span>
+            <span>Scroll suave</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-title-row">
+            <h3 class="project-title">Pequeno blog</h3>
+            <span class="project-tag">Em breve</span>
+          </div>
+          <p class="project-desc">Ideia de blog simples para treinar estrutura de textos, imagens e navegação.</p>
+          <div class="project-meta">
+            <span>Organização por posts</span>
+            <span>Layout limpo</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+      <h2>Contato</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>Quer falar comigo para tirar dúvidas, dar feedback ou propor um projeto? Use o formulário ao lado ou copie meus dados de contato abaixo.</p>
+          <p class="contact-line"><strong>Email:</strong> seuemail@exemplo.com</p>
+          <p class="contact-line"><strong>Instagram:</strong> @seu_usuario</p>
+          <p class="contact-line"><strong>Cidade:</strong> Sua cidade / Seu estado</p>
+          <p style="margin-top: 10px; font-size: 0.85rem; color:#9ca3af;">Obs.: este formulário é apenas visual, mas você pode ligar em serviços como Formspree ou Netlify Forms para receber as mensagens de verdade.</p>
+        </div>
+
+        <form id="form-contato">
+          <div class="form-row-inline">
+            <div>
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" placeholder="Seu nome">
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="seuemail@exemplo.com">
+            </div>
+          </div>
+
+          <div>
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" placeholder="Escreva sua mensagem aqui..."></textarea>
+          </div>
+
+          <button type="button" class="btn btn-primary" id="btn-enviar">
+            Enviar mensagem
+          </button>
+
+          <p id="feedback" style="font-size:0.85rem; color:#22c55e; margin-top:6px;"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="ano-atual"></span> • Meu primeiro site feito no VS Code.
+  </footer>
+
+  <script>
+    // Atualizar ano automaticamente
+    document.getElementById('ano-atual').textContent = new Date().getFullYear();
+
+    // Interação simples do formulário
+    const botao = document.getElementById('btn-enviar');
+    const feedback = document.getElementById('feedback');
+    const campoNome = document.getElementById('nome');
+
+    botao.addEventListener('click', () => {
+      const nome = campoNome.value.trim();
+
+      if (!nome) {
+        feedback.style.color = '#f97316';
+        feedback.textContent = 'Por favor, preencha pelo menos seu nome antes de enviar.';
+        return;
+      }
+
+      feedback.style.color = '#22c55e';
+      feedback.textContent = `Obrigado pela mensagem, ${nome}! (No código real, aqui eu enviaria os dados para o servidor.)`;
+    });
+  </script>
+</body>
+</html>
